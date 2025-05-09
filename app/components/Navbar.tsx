@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="flex justify-center bg-gray-100">
+    <div className="flex justify-center border-b-1 border-gray-300">
       <div className="max-w-[1400px] w-full px-4">
         <nav className="flex justify-between items-center py-4">
           <div className="text-xl font-bold">Logo</div>
@@ -35,7 +35,7 @@ const Navbar = () => {
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } absolute top-16 left-0 w-full bg-gray-100 md:static md:flex md:space-x-6 md:w-auto`}
+            } absolute top-16 left-0 w-full md:static md:flex md:space-x-6 md:w-auto md:bg-transparent bg-gray-300 md:h-auto h-full`}
           >
             <li className="border-b md:border-none">
               <a

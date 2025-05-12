@@ -5,6 +5,7 @@ import Description from "./Description";
 import FilterElements from "./FilterElements";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Challenges from "./Challenges";
 
 const Main = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const Main = () => {
         <Navbar />
         <Description />
         <FilterElements toggleSidebar={toggleSidebar} />
-        <h1>Grid with the challenges</h1>
+        <Challenges />
       </div>
     </div>
   );

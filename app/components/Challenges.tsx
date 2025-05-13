@@ -9,7 +9,7 @@ const Card = () => {
           alt="screenshot of a project"
           layout="fill"
           objectFit="cover"
-          className="rounded-t-2xl"
+          className="rounded-t-2xl hover:transform"
         />
       </div>
 

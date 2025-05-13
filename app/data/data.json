@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Portfolio Website",
+    "techstack": ["HTML", "CSS", "JavaScript"],
+    "description": "A personal portfolio site showcasing projects, resume, and contact form."
+  },
+  {
+    "title": "E-commerce Storefront",
+    "techstack": ["React", "Tailwind", "NodeJS", "MongoDB"],
+    "description": "An online store with product listings, cart, and user authentication."
+  },
+  {
+    "title": "Blog Platform",
+    "techstack": ["NextJS", "SCSS", "MongoDB"],
+    "description": "A content-focused blog platform with dynamic routing and markdown support."
+  },
+  {
+    "title": "Task Management App",
+    "techstack": ["React", "Tailwind", "NodeJS"],
+    "description": "A kanban-style task manager with drag-and-drop functionality."
+  },
+  {
+    "title": "Real-time Chat App",
+    "techstack": ["NextJS", "SCSS", "MongoDB", "NodeJS"],
+    "description": "A messaging platform with real-time chat and user presence tracking."
+  },
+  {
+    "title": "Landing Page Generator",
+    "techstack": ["HTML", "SCSS", "JavaScript"],
+    "description": "Tool to create customizable landing pages with live preview."
+  },
+  {
+    "title": "Event Booking System",
+    "techstack": ["React", "Tailwind", "NodeJS", "MongoDB"],
+    "description": "A full-stack system for creating, browsing, and booking events."
+  },
+  {
+    "title": "Weather Dashboard",
+    "techstack": ["HTML", "CSS", "JavaScript", "React"],
+    "description": "A weather app showing current forecasts using a public API."
+  },
+  {
+    "title": "Developer Blog",
+    "techstack": ["NextJS", "Tailwind"],
+    "description": "Minimal blog for sharing coding tutorials and tips with dark mode support."
+  },
+  {
+    "title": "Recipe Sharing Platform",
+    "techstack": ["React", "SCSS", "NodeJS", "MongoDB"],
+    "description": "Users can share and browse recipes with ratings and comments."
+  }
+]

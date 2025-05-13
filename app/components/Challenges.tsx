@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Card = () => {
   return (
-    <div className="border border-gray-200 rounded-2xl flex flex-col min-h-[400px]">
+    <div className="border border-gray-200 rounded-2xl flex flex-col min-h-[400px] z-10">
       <div className="flex-1 relative w-full">
         <Image
           src="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_475/Challenges/youkdcm0w5zedahid4by.jpg"

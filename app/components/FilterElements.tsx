@@ -36,7 +36,7 @@ const FilterElements = ({ toggleSidebar }: FilterElementsProps) => {
             />
           </div>
 
-          <div className="flex w-full flex-col sm:flex-row justify-between md:justify-end items-center gap-4">
+          <div className="relative flex w-full flex-col sm:flex-row justify-between md:justify-end items-center gap-4 z-100">
             <button
               className="flex items-center justify-center gap-2 relative w-full md:w-auto border px-3 py-2 border-gray-200"
               onClick={toggleSidebar}
@@ -66,9 +66,9 @@ const FilterElements = ({ toggleSidebar }: FilterElementsProps) => {
                     ].map((item, index) => (
                       <li
                         key={index}
-                        className={`hover:bg-gray-300 px-3 py-2  ${
+                        className={`hover:bg-gray-300 px-3 py-2 z-100 ${
                           activeIndex === index
-                            ? "font-medium border-l-3 border-l-amber-500"
+                            ? "font-medium border-l-3 border-l-amber-500 "
                             : "border-l-3 border-l-transparent"
                         }`}
                         onClick={() => handleActive(index, item)}

@@ -16,11 +16,10 @@ const ChallengePage: React.FC = () => {
 
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
-    
+
     const fetchProject = async () => {
       try {
         const response = await fetch("/data/data.json");
-        console.log(response);
         const data: Project[] = await response.json();
         const selectedProject = data[parseInt(id) - 1];
         setProject(selectedProject || null);
@@ -43,10 +42,17 @@ const ChallengePage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
-      <strong>Tech Stack:</strong> {project.techstack.join(", ")}
+    <div className="flex items-center relative w-full min-h-screen p-4 bg-gray-50">
+      <div className="flex flex-col md:flex-row border max-w-[1200px] mx-auto w-full border-gray-200 rounded-2xl px-2 py-4 bg-white">
+        <div className="flex flex-1 order-1 md:order-2">
+          <span>images</span>
+        </div>
+        <div className="flex flex-1 flex-col order-2 md:order-1">
+          <h1 className="text-3xl font-bold mb-5">{project.title}</h1>
+          <p>{project.description}</p>
+          <strong>Tech Stack:</strong> {project.techstack.join(", ")}
+        </div>
+      </div>
     </div>
   );
 };

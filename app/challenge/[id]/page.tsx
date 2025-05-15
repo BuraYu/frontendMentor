@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Project {
   title: string;
@@ -12,7 +13,8 @@ interface Project {
 const ChallengePage: React.FC = () => {
   const { id } = useParams();
   const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [image, setImage] = useState<string>("1");
 
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
@@ -44,11 +46,23 @@ const ChallengePage: React.FC = () => {
   return (
     <div className="flex items-center relative w-full min-h-screen p-4 bg-gray-50">
       <div className="flex flex-col md:flex-row border max-w-[1200px] mx-auto w-full border-gray-200 rounded-2xl px-2 py-4 bg-white">
-        <div className="flex flex-1 order-1 md:order-2">
-          <span>images</span>
+        <div className="flex flex-1 flex-col order-1 md:order-2">
+          <Image
+            src="https://picsum.photos/600/600"
+            width={600}
+            height={600}
+            alt="image filler"
+          />
+          <div className="flex justify-center mt-3">
+            <button className="btn">Desktop design</button>
+            <button className="btn ml-5">Tablet design</button>
+            <button className="btn ml-5">Mobile design</button>
+          </div>
         </div>
         <div className="flex flex-1 flex-col order-2 md:order-1">
-          <h1 className="text-3xl font-bold mb-5">{project.title}</h1>
+          <h1 className="text-3xl font-medium mb-5 font-barlow">
+            {project.title}
+          </h1>
           <p>{project.description}</p>
           <strong>Tech Stack:</strong> {project.techstack.join(", ")}
         </div>

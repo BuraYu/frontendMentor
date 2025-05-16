@@ -29,7 +29,7 @@ const ChallengePage: React.FC = () => {
       case "tablet":
         return { width: 1, height: 0.5 };
       case "mobile":
-        return { width: 0.5, height: 0.98 };
+        return { width: 0.5, height: 0.90 };
       default:
         return { width: 1, height: 1 };
     }

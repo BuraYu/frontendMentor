@@ -101,12 +101,16 @@ const ChallengePage: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="flex flex-1 flex-col order-2 md:order-1">
-          <h1 className="text-3xl font-medium mb-5 font-barlow">
+        <div className="flex flex-col justify-center p-6">
+          <h1 className="text-4xl font-bold mb-4 text-gray-800">
             {project.title}
           </h1>
-          <p>{project.description}</p>
-          <strong>Tech Stack:</strong> {project.techstack.join(", ")}
+          <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            {project.description}
+          </p>
+          <strong className="text-gray-700 text-base">
+            Tech Stack: {project.techstack.join(", ")}
+          </strong>
         </div>
       </div>
     </div>

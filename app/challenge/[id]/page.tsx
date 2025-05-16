@@ -14,7 +14,28 @@ const ChallengePage: React.FC = () => {
   const { id } = useParams();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [image, setImage] = useState<string>("1");
+  const [imageType, setImageType] = useState<"desktop" | "tablet" | "mobile">(
+    "desktop"
+  );
+
+  const handleClick = (type: "desktop" | "tablet" | "mobile") => {
+    setImageType(type);
+  };
+
+  const getImageSize = (type: string) => {
+    switch (type) {
+      case "desktop":
+        return { width: 1, height: 1 };
+      case "tablet":
+        return { width: 1, height: 0.5 };
+      case "mobile":
+        return { width: 0.5, height: 0.98 };
+      default:
+        return { width: 1, height: 1 };
+    }
+  };
+
+  const { width, height } = getImageSize(imageType);
 
   useEffect(() => {
     if (!id || Array.isArray(id)) return;
@@ -46,17 +67,38 @@ const ChallengePage: React.FC = () => {
   return (
     <div className="flex items-center relative w-full min-h-screen p-4 bg-gray-50">
       <div className="flex flex-col md:flex-row border max-w-[1200px] mx-auto w-full border-gray-200 rounded-2xl px-2 py-4 bg-white">
-        <div className="flex flex-1 flex-col order-1 md:order-2">
-          <Image
-            src="https://picsum.photos/600/600"
-            width={600}
-            height={600}
-            alt="image filler"
-          />
-          <div className="flex justify-center mt-3">
-            <button className="btn">Desktop design</button>
-            <button className="btn ml-5">Tablet design</button>
-            <button className="btn ml-5">Mobile design</button>
+        <div className="relative items-center justify-between flex flex-1 flex-col order-1 md:order-2">
+          <div className="w-full max-w-[600px] aspect-square flex items-center justify-center bg-gray-100 rounded-lg mx-auto">
+            {/* unnecessary */}
+            <Image
+              src={`https://picsum.photos/${Math.round(
+                width * 600
+              )}/${Math.round(height * 600)}?random=600`}
+              width={Math.round(width * 600)}
+              height={Math.round(height * 600)}
+              alt="image filler"
+              className=""
+            />
+          </div>
+          <div className="relativ bottom-0 flex justify-center mt-3">
+            <button
+              className="btn px-3 py-1 text-base sm:text-lg"
+              onClick={() => handleClick("desktop")}
+            >
+              Desktop
+            </button>
+            <button
+              className="btn ml-2 sm:ml-5 px-3 py-1 text-base sm:text-lg"
+              onClick={() => handleClick("tablet")}
+            >
+              Tablet
+            </button>
+            <button
+              className="btn ml-2 sm:ml-5  px-3 py-1 text-base sm:text-lg"
+              onClick={() => handleClick("mobile")}
+            >
+              Mobile
+            </button>
           </div>
         </div>
         <div className="flex flex-1 flex-col order-2 md:order-1">

@@ -6,5 +6,5 @@
 }
 
 .btn {
-  @apply bg-gray-300 hover:bg-gray-400 text-gray-600 transition px-3 py-1 rounded-4xl uppercase font-semibold italic cursor-pointer;
+  @apply bg-gray-300 hover:bg-gray-400 text-gray-600 transition  rounded-4xl uppercase font-semibold italic cursor-pointer;
 }

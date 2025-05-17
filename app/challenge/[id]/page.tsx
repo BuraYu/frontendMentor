@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -18,6 +18,8 @@ const ChallengePage: React.FC = () => {
     "desktop"
   );
 
+  const router = useRouter();
+
   const handleClick = (type: "desktop" | "tablet" | "mobile") => {
     setImageType(type);
   };
@@ -29,7 +31,7 @@ const ChallengePage: React.FC = () => {
       case "tablet":
         return { width: 1, height: 0.5 };
       case "mobile":
-        return { width: 0.5, height: 0.90 };
+        return { width: 0.5, height: 0.9 };
       default:
         return { width: 1, height: 1 };
     }
@@ -66,6 +68,12 @@ const ChallengePage: React.FC = () => {
 
   return (
     <div className="flex items-center relative w-full min-h-screen p-4 bg-gray-50">
+      <img
+        src="/arrow.svg"
+        alt="Back"
+        className="absolute top-5 w-10 h-10 bg-amber-200 rounded-full hover:bg-amber-300"
+        onClick={() => router.push("/")}
+      />
       <div className="flex flex-col md:flex-row border max-w-[1200px] mx-auto w-full border-gray-200 rounded-2xl px-2 py-4 bg-white">
         <div className="relative items-center justify-between flex flex-1 flex-col order-1 md:order-2">
           <div className="w-full max-w-[600px] aspect-square flex items-center justify-center bg-gray-100 rounded-lg mx-auto">

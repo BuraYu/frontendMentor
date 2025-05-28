@@ -13,10 +13,15 @@ const FilterElements = ({ toggleSidebar }: FilterElementsProps) => {
   const [activeSelection, setActiveSelection] =
     useState<string>("Newest to oldest");
   const [sidebarActive, setSidebarActive] = useState<boolean>(true);
+  const [searchInput, setSearchInpout] = useState<string>("");
 
   const handleActive = (index: number, item: string) => {
     setActiveIndex(index);
     setActiveSelection(item);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInpout(e.target.value);
   };
 
   return (
@@ -28,6 +33,8 @@ const FilterElements = ({ toggleSidebar }: FilterElementsProps) => {
               type="text"
               placeholder="Search Challenges"
               className="w-full border-2 border-gray-200 px-2 py-3 focus:outline-1 focus:outline-blue-200"
+              value={searchInput}
+              onChange={handleChange}
             />
             <Search
               className="absolute top-4 right-3"

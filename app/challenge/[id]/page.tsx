@@ -71,7 +71,7 @@ const ChallengePage: React.FC = () => {
       <img
         src="/arrow.svg"
         alt="Back"
-        className="absolute top-5 w-10 h-10 bg-amber-200 rounded-full hover:bg-amber-300"
+        className="absolute top-5 w-10 h-10 bg-amber-200 rounded-full hover:bg-amber-300 transition"
         onClick={() => router.push("/")}
       />
       <div className="flex flex-col md:flex-row border max-w-[1200px] mx-auto w-full border-gray-200 rounded-2xl px-2 py-4 bg-white">

@@ -6,11 +6,13 @@ interface Card {
   description: string;
   techstack: string[];
 }
+
 interface ChallengesProps {
   searchInput: string;
+  selectedFilters: string[];
 }
 
-const Challenges = ({ searchInput }: ChallengesProps) => {
+const Challenges = ({ searchInput, selectedFilters }: ChallengesProps) => {
   const [cards, setCards] = useState<Card[]>([]);
 
   useEffect(() => {
@@ -29,16 +31,29 @@ const Challenges = ({ searchInput }: ChallengesProps) => {
 
   const filteredCards = cards.filter((card) => {
     const search = searchInput.toLowerCase();
-    const titleMatch = card.title.toLowerCase().includes(search);
-    const techstackMatch = card.techstack.some((tech) =>
-      tech.toLowerCase().includes(search)
-    );
-    return titleMatch || techstackMatch;
+
+    const matchesSearch =
+      card.title.toLowerCase().includes(search) ||
+      card.techstack.some((tech) => tech.toLowerCase().includes(search));
+
+    const matchesFilters =
+      selectedFilters.length === 0 ||
+      selectedFilters.every((filter) =>
+        card.techstack
+          .map((t) => t.toLowerCase())
+          .includes(filter.toLowerCase())
+      );
+    return matchesSearch && matchesFilters;
   });
 
   return (
     <div className="relative max-w-[1200px] mx-auto w-full p-4">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredCards.length === 0 ? (
+          <p className="text-center text-gray-500 col-span-full">
+            No matching challenges found.
+          </p>
+        ) : null}
         {filteredCards.map((card, index) => (
           <Link key={index} href={`/challenge/${index + 1}`}>
             <div className="border border-gray-200 rounded-2xl flex flex-col min-h-[500px] z-10">

@@ -8,8 +8,6 @@ import Sidebar from "./Sidebar";
 import Challenges from "./Challenges";
 
 const Main = () => {
-
-  
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);

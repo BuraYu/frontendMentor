@@ -30,6 +30,7 @@ const Sidebar: React.FC<SidebarElementProps> = ({
         css: "CSS",
         sass: "Sass",
         tailwind: "Tailwind",
+        scss: "SCSS"
       },
     },
     {

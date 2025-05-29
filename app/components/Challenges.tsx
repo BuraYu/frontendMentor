@@ -6,8 +6,11 @@ interface Card {
   description: string;
   techstack: string[];
 }
+interface ChallengesProps {
+  searchInput: string;
+}
 
-const Challenges = () => {
+const Challenges = ({ searchInput }: ChallengesProps) => {
   const [cards, setCards] = useState<Card[]>([]);
 
   useEffect(() => {
@@ -24,15 +27,21 @@ const Challenges = () => {
     fetchData();
   }, []);
 
+  const filteredCards = cards.filter((card) => {
+    const search = searchInput.toLowerCase();
+    const titleMatch = card.title.toLowerCase().includes(search);
+    const techstackMatch = card.techstack.some((tech) =>
+      tech.toLowerCase().includes(search)
+    );
+    return titleMatch || techstackMatch;
+  });
+
   return (
     <div className="relative max-w-[1200px] mx-auto w-full p-4">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {cards.map((card, index) => (
-          <Link href={`/challenge/${index + 1}`}>
-            <div
-              key={index}
-              className="border border-gray-200 rounded-2xl flex flex-col min-h-[500px] z-10"
-            >
+        {filteredCards.map((card, index) => (
+          <Link key={index} href={`/challenge/${index + 1}`}>
+            <div className="border border-gray-200 rounded-2xl flex flex-col min-h-[500px] z-10">
               <div className="flex-1 relative w-full">
                 <img
                   src="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_475/Challenges/youkdcm0w5zedahid4by.jpg"
@@ -41,13 +50,11 @@ const Challenges = () => {
                 />
               </div>
               <div className="flex-1 flex flex-col gap-4 p-5">
-                <div>
-                  <h1 className="text-2xl font-semibold">{card.title}</h1>
-                </div>
+                <h1 className="text-2xl font-semibold">{card.title}</h1>
                 <ul className="flex flex-wrap gap-2.5">
-                  {card.techstack.map((tag, index) => (
+                  {card.techstack.map((tag, tagIndex) => (
                     <li
-                      key={index}
+                      key={tagIndex}
                       className="text-xs bg-gray-300 inline px-2 py-1 border-0 rounded-2xl"
                     >
                       {tag}

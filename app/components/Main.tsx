@@ -9,6 +9,7 @@ import Challenges from "./Challenges";
 
 const Main = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const toggleSidebar = (): void => {
     setIsSidebarOpen((prev) => !prev);
@@ -16,15 +17,17 @@ const Main = () => {
 
   return (
     <div className="flex relative">
-      {/* Sidebar */}
       <Sidebar isSidebarOpen={isSidebarOpen} />
 
-      {/* Main Content */}
       <div className="flex-1">
         <Navbar />
         <Description />
-        <FilterElements toggleSidebar={toggleSidebar} />
-        <Challenges />
+        <FilterElements
+          toggleSidebar={toggleSidebar}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+        />
+        <Challenges searchInput={searchInput} />
       </div>
     </div>
   );

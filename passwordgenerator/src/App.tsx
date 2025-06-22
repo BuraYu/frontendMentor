@@ -18,7 +18,12 @@ function App() {
   });
 
   // TODO add function
-  const toggleCheckbox = () => {};
+  const toggleCheckbox = (key: keyof typeof checked) => {
+    setChecked((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key],
+    }));
+  };
 
   const handleClick = (): void => {
     setPasswordCreated(false);
@@ -90,12 +95,7 @@ function App() {
               <div className="mb-5">
                 <label
                   className="flex gap-4 items-center relative"
-                  onChange={() =>
-                    setChecked((prevState) => ({
-                      ...prevState,
-                      upper: !prevState.upper,
-                    }))
-                  }
+                  onChange={() => toggleCheckbox("upper")}
                 >
                   <input
                     type="checkbox"
@@ -119,12 +119,7 @@ function App() {
               <div className="mb-5">
                 <label
                   className="flex gap-4 items-center relative"
-                  onChange={() =>
-                    setChecked((prevState) => ({
-                      ...prevState,
-                      lower: !prevState.lower,
-                    }))
-                  }
+                  onChange={() => toggleCheckbox("lower")}
                 >
                   <input
                     type="checkbox"
@@ -148,12 +143,7 @@ function App() {
               <div className="mb-5">
                 <label
                   className="flex gap-4 items-center relative"
-                  onChange={() =>
-                    setChecked((prevState) => ({
-                      ...prevState,
-                      number: !prevState.number,
-                    }))
-                  }
+                  onChange={() => toggleCheckbox("number")}
                 >
                   <input
                     type="checkbox"
@@ -177,12 +167,7 @@ function App() {
               <div>
                 <label
                   className="flex gap-4 items-center relative"
-                  onChange={() =>
-                    setChecked((prevState) => ({
-                      ...prevState,
-                      symbol: !prevState.symbol,
-                    }))
-                  }
+                  onChange={() => toggleCheckbox("symbol")}
                 >
                   <input
                     type="checkbox"

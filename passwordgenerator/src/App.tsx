@@ -16,8 +16,9 @@ function App() {
     number: false,
     symbol: true,
   });
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [strength, setStrength] = useState(0);
 
-  // TODO add function
   const toggleCheckbox = (key: keyof typeof checked) => {
     setChecked((prevState) => ({
       ...prevState,
@@ -27,6 +28,13 @@ function App() {
 
   const handleClick = (): void => {
     setPasswordCreated(false);
+  };
+
+  const strengthColors = ["bg-red", "bg-orange", "bg-yellow", "bg-neonGreen"];
+
+  const passwordStrenghtChecker = (number: number) => {
+    setPasswordStrength("weak");
+    setStrength(number);
   };
 
   return (
@@ -189,8 +197,27 @@ function App() {
                 </label>
               </div>
             </div>
-            <div>Password Strength</div>
+            <div className="bg-veryDarkGrey py-6 px-8 flex justify-between items-center">
+              <span className="text-grey text-xl">STRENGTH</span>
+              <div className="flex gap-2">
+                <span className="text-white text-2xl mr-2 font-bold">
+                  {passwordStrength.toUpperCase()}
+                </span>
+
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-3 h-7 border-2 ${
+                      i < strength
+                        ? `${strengthColors[strength - 1]} border-transparent`
+                        : "border-white"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
             <div>
+              <button onClick={() => passwordStrenghtChecker(4)}>Test</button>
               <span>generate</span>
               <span>icon</span>
             </div>

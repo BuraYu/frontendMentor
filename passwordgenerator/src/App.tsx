@@ -5,6 +5,7 @@ import Slider from "rc-slider";
 import CheckIcon from "./assets/icon-check.svg";
 
 import "rc-slider/assets/index.css";
+import RightArrow from "./components/icons/RightArrow";
 
 function App() {
   const [passwordCreate, setPasswordCreated] = useState<boolean>(false);
@@ -16,8 +17,8 @@ function App() {
     number: false,
     symbol: true,
   });
-  const [passwordStrength, setPasswordStrength] = useState("");
-  const [strength, setStrength] = useState(0);
+  const [passwordStrength, setPasswordStrength] = useState<string>("");
+  const [strength, setStrength] = useState<number>(0);
 
   const toggleCheckbox = (key: keyof typeof checked) => {
     setChecked((prevState) => ({
@@ -216,10 +217,12 @@ function App() {
                 ))}
               </div>
             </div>
-            <div>
-              <button onClick={() => passwordStrenghtChecker(4)}>Test</button>
-              <span>generate</span>
-              <span>icon</span>
+            <div
+              className="group bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300 px-[177px] py-5 flex items-center cursor-pointer"
+              onClick={() => passwordStrenghtChecker(0)}
+            >
+              <span className="text-lg mr-6">GENERATE</span>
+              <RightArrow className="text-[#24232C] group-hover:text-[#A4FFAF] transition-colors duration-300" />
             </div>
           </div>
         </div>

@@ -68,17 +68,40 @@ function App() {
   // TODO fix this
   const handleClick = (): void => {
     passwordStrenghtChecker(passwordLength);
+    console.log(passwordLength);
     setPasswordCreated(true);
     randomString(passwordLength, checked);
   };
 
   const strengthColors = ["bg-red", "bg-orange", "bg-yellow", "bg-neonGreen"];
 
-  const passwordStrenghtChecker = (number: number) => {
-    if (passwordLength < 10) {
-      setPasswordStrength("weak");
+  const passwordStrenghtChecker = (length: number) => {
+    if (length < 8) {
+      setPasswordStrength("Weak");
+      setStrength(1);
+      return;
     }
-    setStrength(number);
+
+    let score = 0;
+
+    if (checked.upper) score++;
+    if (checked.lower) score++;
+    if (checked.number) score++;
+    if (checked.symbol) score++;
+
+    if (length >= 12) score++;
+    if (length >= 16) score++;
+
+    if (score <= 2) {
+      setPasswordStrength("Fair");
+      setStrength(2);
+    } else if (score === 3 || score === 4) {
+      setPasswordStrength("Strong");
+      setStrength(3);
+    } else {
+      setPasswordStrength("Very Strong");
+      setStrength(4);
+    }
   };
 
   return (

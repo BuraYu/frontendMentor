@@ -7,12 +7,20 @@ import CheckIcon from "./assets/icon-check.svg";
 import "rc-slider/assets/index.css";
 import RightArrow from "./components/icons/RightArrow";
 
+type CharOptions = {
+  upper?: boolean;
+  lower?: boolean;
+  number?: boolean;
+  symbol?: boolean;
+};
+
 function App() {
   const [passwordCreate, setPasswordCreated] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
   const [passwordLength, setPasswordLength] = useState<number | any>(10);
   const [isFocused, setIsFocused] = useState(false);
   const [checked, setChecked] = useState({
-    upper: false,
+    upper: true,
     lower: false,
     number: false,
     symbol: true,
@@ -20,21 +28,56 @@ function App() {
   const [passwordStrength, setPasswordStrength] = useState<string>("");
   const [strength, setStrength] = useState<number>(0);
 
+  function randomString(length: number, options: CharOptions): void {
+    const sets = {
+      uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      lowercase: "abcdefghijklmnopqrstuvwxyz",
+      numbers: "0123456789",
+      symbols: "!@#$%^&*()_+[]{}|;:,.<>?/~`-=",
+    };
+    console.log(options);
+    let availableChars = "";
+
+    if (options.upper) availableChars += sets.uppercase;
+    if (options.lower) availableChars += sets.lowercase;
+    if (options.number) availableChars += sets.numbers;
+    if (options.symbol) availableChars += sets.symbols;
+
+    if (!availableChars) {
+      throw new Error("At least one character type must be selected.");
+    }
+
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomChar = availableChars.charAt(
+        Math.floor(Math.random() * availableChars.length)
+      );
+      result += randomChar;
+    }
+
+    setPassword(result);
+    console.log(result);
+  }
+
   const toggleCheckbox = (key: keyof typeof checked) => {
     setChecked((prevState) => ({
       ...prevState,
       [key]: !prevState[key],
     }));
   };
-
+  // TODO fix this
   const handleClick = (): void => {
-    setPasswordCreated(false);
+    passwordStrenghtChecker(passwordLength);
+    setPasswordCreated(true);
+    randomString(passwordLength, checked);
   };
 
   const strengthColors = ["bg-red", "bg-orange", "bg-yellow", "bg-neonGreen"];
 
   const passwordStrenghtChecker = (number: number) => {
-    setPasswordStrength("weak");
+    if (passwordLength < 10) {
+      setPasswordStrength("weak");
+    }
     setStrength(number);
   };
 
@@ -50,7 +93,7 @@ function App() {
               passwordCreate ? "opacity-100" : "opacity-20"
             }`}
           >
-            P4$5W0rD!
+            {password || "P4$5W0rD!"}
           </span>
           <svg
             width="21"
@@ -73,7 +116,7 @@ function App() {
               </div>
               <Slider
                 min={4}
-                max={32}
+                max={20}
                 defaultValue={10}
                 onChange={(value) => setPasswordLength(value)}
                 onFocus={() => setIsFocused(true)}
@@ -220,7 +263,7 @@ function App() {
             </div>
             <div
               className="group bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300 px-[177px] py-5 flex items-center cursor-pointer"
-              onClick={() => passwordStrenghtChecker(4)}
+              onClick={() => handleClick()}
             >
               <span className="text-lg mr-6">GENERATE</span>
               <RightArrow className="text-[#24232C] group-hover:text-[#A4FFAF] transition-colors duration-300" />

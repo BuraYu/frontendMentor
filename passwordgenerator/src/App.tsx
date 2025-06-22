@@ -168,13 +168,11 @@ function App() {
             </div>
             <div className="text-white text-lg">
               <div className="mb-5">
-                <label
-                  className="flex gap-4 items-center relative"
-                  onChange={() => toggleCheckbox("upper")}
-                >
+                <label className="flex gap-4 items-center relative">
                   <input
                     type="checkbox"
                     checked={checked.upper}
+                    onChange={() => toggleCheckbox("upper")}
                     className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
                       checked.upper
                         ? "bg-neonGreen border-transparent"
@@ -192,13 +190,11 @@ function App() {
                 </label>
               </div>
               <div className="mb-5">
-                <label
-                  className="flex gap-4 items-center relative"
-                  onChange={() => toggleCheckbox("lower")}
-                >
+                <label className="flex gap-4 items-center relative">
                   <input
                     type="checkbox"
                     checked={checked.lower}
+                    onChange={() => toggleCheckbox("lower")}
                     className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
                       checked.lower
                         ? "bg-neonGreen border-transparent"
@@ -216,13 +212,11 @@ function App() {
                 </label>
               </div>
               <div className="mb-5">
-                <label
-                  className="flex gap-4 items-center relative"
-                  onChange={() => toggleCheckbox("number")}
-                >
+                <label className="flex gap-4 items-center relative">
                   <input
                     type="checkbox"
                     checked={checked.number}
+                    onChange={() => toggleCheckbox("number")}
                     className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
                       checked.number
                         ? "bg-neonGreen border-transparent"
@@ -240,13 +234,11 @@ function App() {
                 </label>
               </div>
               <div>
-                <label
-                  className="flex gap-4 items-center relative"
-                  onChange={() => toggleCheckbox("symbol")}
-                >
+                <label className="flex gap-4 items-center relative">
                   <input
                     type="checkbox"
                     checked={checked.symbol}
+                    onChange={() => toggleCheckbox("symbol")}
                     className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
                       checked.symbol
                         ? "bg-neonGreen border-transparent"

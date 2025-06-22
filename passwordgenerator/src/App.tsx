@@ -2,14 +2,23 @@ import "./App.css";
 // import Copy from "./assets/icon-copy.svg";
 import { useState } from "react";
 import Slider from "rc-slider";
+import CheckIcon from "./assets/icon-check.svg";
 
 import "rc-slider/assets/index.css";
 
 function App() {
   const [passwordCreate, setPasswordCreated] = useState<boolean>(false);
-  // TODO rc-slider is passing values, but not a number? check this
   const [passwordLength, setPasswordLength] = useState<number | any>(10);
   const [isFocused, setIsFocused] = useState(false);
+  const [checked, setChecked] = useState({
+    upper: false,
+    lower: false,
+    number: false,
+    symbol: true,
+  });
+
+  // TODO add function
+  const toggleCheckbox = () => {};
 
   const handleClick = (): void => {
     setPasswordCreated(false);
@@ -77,7 +86,124 @@ function App() {
                 }}
               />
             </div>
-            <div>Checkboxes</div>
+            <div className="text-white text-lg">
+              <div className="mb-5">
+                <label
+                  className="flex gap-4 items-center relative"
+                  onChange={() =>
+                    setChecked((prevState) => ({
+                      ...prevState,
+                      upper: !prevState.upper,
+                    }))
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked.upper}
+                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
+                      checked.upper
+                        ? "bg-neonGreen border-transparent"
+                        : "border-white bg-darkGrey"
+                    }   transition-all duration-200`}
+                  />
+                  <span
+                    className={`w-5 h-5 flex items-center justify-center absolute ${
+                      checked.upper ? "inline" : "hidden"
+                    }`}
+                  >
+                    <img src={CheckIcon} alt="Check Icon" />
+                  </span>
+                  Include Uppercase Letters
+                </label>
+              </div>
+              <div className="mb-5">
+                <label
+                  className="flex gap-4 items-center relative"
+                  onChange={() =>
+                    setChecked((prevState) => ({
+                      ...prevState,
+                      lower: !prevState.lower,
+                    }))
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked.lower}
+                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
+                      checked.lower
+                        ? "bg-neonGreen border-transparent"
+                        : "border-white bg-darkGrey"
+                    }   transition-all duration-200`}
+                  />
+                  <span
+                    className={`w-5 h-5 flex items-center justify-center absolute ${
+                      checked.lower ? "inline" : "hidden"
+                    }`}
+                  >
+                    <img src={CheckIcon} alt="Check Icon" />
+                  </span>
+                  Include Lowercase Letters
+                </label>
+              </div>
+              <div className="mb-5">
+                <label
+                  className="flex gap-4 items-center relative"
+                  onChange={() =>
+                    setChecked((prevState) => ({
+                      ...prevState,
+                      number: !prevState.number,
+                    }))
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked.number}
+                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
+                      checked.number
+                        ? "bg-neonGreen border-transparent"
+                        : "border-white bg-darkGrey"
+                    }   transition-all duration-200`}
+                  />
+                  <span
+                    className={`w-5 h-5 flex items-center justify-center absolute ${
+                      checked.number ? "inline" : "hidden"
+                    }`}
+                  >
+                    <img src={CheckIcon} alt="Check Icon" />
+                  </span>
+                  Include Number
+                </label>
+              </div>
+              <div>
+                <label
+                  className="flex gap-4 items-center relative"
+                  onChange={() =>
+                    setChecked((prevState) => ({
+                      ...prevState,
+                      symbol: !prevState.symbol,
+                    }))
+                  }
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked.symbol}
+                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
+                      checked.symbol
+                        ? "bg-neonGreen border-transparent"
+                        : "border-white bg-darkGrey"
+                    }   transition-all duration-200`}
+                  />
+                  <span
+                    className={`w-5 h-5 flex items-center justify-center absolute ${
+                      checked.symbol ? "inline" : "hidden"
+                    }`}
+                  >
+                    <img src={CheckIcon} alt="Check Icon" />
+                  </span>
+                  Include Symbols
+                </label>
+              </div>
+            </div>
             <div>Password Strength</div>
             <div>
               <span>generate</span>

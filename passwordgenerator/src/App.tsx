@@ -201,8 +201,9 @@ function App() {
             <div className="bg-veryDarkGrey py-6 px-8 flex justify-between items-center">
               <span className="text-grey text-xl">STRENGTH</span>
               <div className="flex gap-2">
+                {/* min height for span or non-breaking space character */}
                 <span className="text-white text-2xl mr-2 font-bold">
-                  {passwordStrength.toUpperCase()}
+                  {passwordStrength ? passwordStrength.toUpperCase() : "\u00A0"}
                 </span>
 
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -219,7 +220,7 @@ function App() {
             </div>
             <div
               className="group bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300 px-[177px] py-5 flex items-center cursor-pointer"
-              onClick={() => passwordStrenghtChecker(0)}
+              onClick={() => passwordStrenghtChecker(4)}
             >
               <span className="text-lg mr-6">GENERATE</span>
               <RightArrow className="text-[#24232C] group-hover:text-[#A4FFAF] transition-colors duration-300" />

@@ -5,7 +5,7 @@ import PasswordDisplay from "./components/PasswordDisplay";
 import Checkbox from "./components/Checkbox";
 import StrengthIndicator from "./components/StrengthIndicator";
 import GenerateButton from "./components/GenerateButton";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 type CharOptions = {
   upper?: boolean;
@@ -68,7 +68,7 @@ function App() {
       !checked.number &&
       !checked.symbol
     ) {
-      alert("Please select at least one option.");
+      toast.error("Need at least one option selected");
       return;
     }
     passwordStrenghtChecker(passwordLength);

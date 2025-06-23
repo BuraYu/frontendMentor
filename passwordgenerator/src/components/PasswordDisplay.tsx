@@ -18,7 +18,10 @@ export default function PasswordDisplay({
       >
         {password || "P4$5W0rD!"}
       </span>
-      <CopyIcon className="text-[#A4FFAF] hover:text-[#FFF] transition-colors duration-300" />
+      <CopyIcon
+        className="text-[#A4FFAF] hover:text-[#FFF] transition-colors duration-300"
+        password={password}
+      />
     </div>
   );
 }

@@ -9,6 +9,7 @@ export default function PasswordDisplay({
   password,
   passwordCreate,
 }: PasswordDisplayProps) {
+
   return (
     <div className="bg-darkGrey mb-6 px-8 py-3 flex justify-between items-center">
       <span

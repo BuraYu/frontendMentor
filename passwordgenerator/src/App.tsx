@@ -5,6 +5,7 @@ import PasswordDisplay from "./components/PasswordDisplay";
 import Checkbox from "./components/Checkbox";
 import StrengthIndicator from "./components/StrengthIndicator";
 import GenerateButton from "./components/GenerateButton";
+import { Toaster } from "react-hot-toast";
 
 type CharOptions = {
   upper?: boolean;
@@ -107,6 +108,8 @@ function App() {
       </h1>
       <div className="max-w-[540px] w-full">
         <PasswordDisplay password={password} passwordCreate={passwordCreate} />
+        <Toaster position="top-center" />
+
         <div className="bg-darkGrey font-jetbrains">
           <div className="flex flex-col gap-8 px-8 py-6">
             <SliderControl

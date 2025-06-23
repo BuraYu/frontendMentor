@@ -15,6 +15,20 @@ module.exports = {
         darkGrey: "#24232C",
         veryDarkGrey: "#18171F",
       },
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        slideOut: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+      },
+      animation: {
+        "slide-in": "slideIn 0.5s ease-out forwards",
+        "slide-out": "slideOut 0.5s ease-in forwards",
+      },
     },
   },
   plugins: [],

@@ -35,7 +35,7 @@ function App() {
       numbers: "0123456789",
       symbols: "!@#$%^&*()_+[]{}|;:,.<>?/~`-=",
     };
-    console.log(options);
+
     let availableChars = "";
 
     if (options.upper) availableChars += sets.uppercase;
@@ -65,12 +65,20 @@ function App() {
       [key]: !prevState[key],
     }));
   };
-  // TODO fix this
   const handleClick = (): void => {
-    passwordStrenghtChecker(passwordLength);
-    console.log(passwordLength);
-    setPasswordCreated(true);
-    randomString(passwordLength, checked);
+    if (
+      checked.upper === false &&
+      checked.lower === false &&
+      checked.number === false &&
+      checked.symbol === false
+    ) {
+      // TODO add animation? 
+      console.log("select option");
+    } else {
+      passwordStrenghtChecker(passwordLength);
+      setPasswordCreated(true);
+      randomString(passwordLength, checked);
+    }
   };
 
   const strengthColors = ["bg-red", "bg-orange", "bg-yellow", "bg-neonGreen"];
@@ -106,7 +114,7 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center flex-col bg-veryDarkGrey">
+    <div className="h-screen flex justify-center items-center flex-col bg-veryDarkGrey relative">
       <h1 className="font-jetbrains text-2xl text-grey mb-8">
         Password Generator
       </h1>

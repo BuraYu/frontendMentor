@@ -1,13 +1,10 @@
 import "./App.css";
-// import Copy from "./assets/icon-copy.svg";
 import { useState } from "react";
-import Slider from "rc-slider";
-import CheckIcon from "./assets/icon-check.svg";
-
-import "rc-slider/assets/index.css";
-import RightArrow from "./components/icons/RightArrow";
+import SliderControl from "./components/SliderControl";
 import PasswordDisplay from "./components/PasswordDisplay";
 import Checkbox from "./components/Checkbox";
+import StrengthIndicator from "./components/StrengthIndicator";
+import GenerateButton from "./components/GenerateButton";
 
 type CharOptions = {
   upper?: boolean;
@@ -17,9 +14,9 @@ type CharOptions = {
 };
 
 function App() {
-  const [passwordCreate, setPasswordCreated] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>("");
-  const [passwordLength, setPasswordLength] = useState<number | any>(10);
+  const [passwordCreate, setPasswordCreated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordLength, setPasswordLength] = useState<number>(10);
   const [isFocused, setIsFocused] = useState(false);
   const [checked, setChecked] = useState({
     upper: true,
@@ -27,8 +24,8 @@ function App() {
     number: false,
     symbol: true,
   });
-  const [passwordStrength, setPasswordStrength] = useState<string>("");
-  const [strength, setStrength] = useState<number>(0);
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [strength, setStrength] = useState(0);
 
   function randomString(length: number, options: CharOptions): void {
     const sets = {
@@ -39,14 +36,14 @@ function App() {
     };
 
     let availableChars = "";
-
     if (options.upper) availableChars += sets.uppercase;
     if (options.lower) availableChars += sets.lowercase;
     if (options.number) availableChars += sets.numbers;
     if (options.symbol) availableChars += sets.symbols;
 
     if (!availableChars) {
-      throw new Error("At least one character type must be selected.");
+      alert("Please select at least one option.");
+      return;
     }
 
     let result = "";
@@ -56,57 +53,45 @@ function App() {
       );
       result += randomChar;
     }
-
     setPassword(result);
-    console.log(result);
   }
 
   const toggleCheckbox = (key: keyof typeof checked) => {
-    setChecked((prevState) => ({
-      ...prevState,
-      [key]: !prevState[key],
-    }));
+    setChecked((prev) => ({ ...prev, [key]: !prev[key] }));
   };
-  const handleClick = (): void => {
+
+  const handleClick = () => {
     if (
-      checked.upper === false &&
-      checked.lower === false &&
-      checked.number === false &&
-      checked.symbol === false
+      !checked.upper &&
+      !checked.lower &&
+      !checked.number &&
+      !checked.symbol
     ) {
-      // TODO add animation?
-      console.log("select option");
-    } else {
-      passwordStrenghtChecker(passwordLength);
-      setPasswordCreated(true);
-      randomString(passwordLength, checked);
-    }
-  };
-
-  const strengthColors = ["bg-red", "bg-orange", "bg-yellow", "bg-neonGreen"];
-
-  const passwordStrenghtChecker = (length: number) => {
-    if (length < 8) {
-      setPasswordStrength("Weak");
-      setStrength(1);
+      alert("Please select at least one option.");
       return;
     }
+    passwordStrenghtChecker(passwordLength);
+    setPasswordCreated(true);
+    randomString(passwordLength, checked);
+  };
 
+  const passwordStrenghtChecker = (length: number) => {
     let score = 0;
-
     if (checked.upper) score++;
     if (checked.lower) score++;
     if (checked.number) score++;
     if (checked.symbol) score++;
-
     if (length >= 12) score++;
     if (length >= 14) score++;
     if (length >= 16) score++;
 
-    if (score <= 2) {
+    if (length < 8) {
+      setPasswordStrength("Weak");
+      setStrength(1);
+    } else if (score <= 2) {
       setPasswordStrength("Fair");
       setStrength(2);
-    } else if (score === 3 || score === 4) {
+    } else if (score <= 4) {
       setPasswordStrength("Strong");
       setStrength(3);
     } else {
@@ -124,43 +109,12 @@ function App() {
         <PasswordDisplay password={password} passwordCreate={passwordCreate} />
         <div className="bg-darkGrey font-jetbrains">
           <div className="flex flex-col gap-8 px-8 py-6">
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-almostWhite">Characters Length</span>
-                {/* TODO remove onClick */}
-                <span className="text-neonGreen text-2xl" onClick={handleClick}>
-                  {passwordLength}
-                </span>
-              </div>
-              <Slider
-                min={4}
-                max={20}
-                defaultValue={10}
-                onChange={(value) => setPasswordLength(value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                styles={{
-                  handle: {
-                    borderColor: "#A4FFAF",
-                    boxShadow: "none",
-                    height: 16,
-                    width: 16,
-                    marginTop: -5,
-                    backgroundColor: isFocused ? "black" : "white",
-                  },
-                  track: {
-                    backgroundColor: "#A4FFAF",
-                    borderRadius: "0",
-                    height: 8,
-                  },
-                  rail: {
-                    backgroundColor: "#111",
-                    borderRadius: "0",
-                    height: 8,
-                  },
-                }}
-              />
-            </div>
+            <SliderControl
+              value={passwordLength}
+              setValue={setPasswordLength}
+              isFocused={isFocused}
+              setIsFocused={setIsFocused}
+            />
             <div className="text-white text-lg">
               <Checkbox
                 label="Include Uppercase Letters"
@@ -183,33 +137,8 @@ function App() {
                 onChange={() => toggleCheckbox("symbol")}
               />
             </div>
-            <div className="bg-veryDarkGrey py-6 px-8 flex justify-between items-center">
-              <span className="text-grey text-xl">STRENGTH</span>
-              <div className="flex gap-2">
-                {/* min height for span or non-breaking space character */}
-                <span className="text-white text-2xl mr-2 font-bold">
-                  {passwordStrength ? passwordStrength.toUpperCase() : "\u00A0"}
-                </span>
-
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-3 h-7 border-2 ${
-                      i < strength
-                        ? `${strengthColors[strength - 1]} border-transparent`
-                        : "border-white"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-            <div
-              className="group bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300 px-[177px] py-5 flex items-center cursor-pointer"
-              onClick={() => handleClick()}
-            >
-              <span className="text-lg mr-6">GENERATE</span>
-              <RightArrow className="text-[#24232C] group-hover:text-[#A4FFAF] transition-colors duration-300" />
-            </div>
+            <StrengthIndicator strength={strength} label={passwordStrength} />
+            <GenerateButton onClick={handleClick} />
           </div>
         </div>
       </div>

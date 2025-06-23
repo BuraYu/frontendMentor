@@ -7,6 +7,7 @@ import CheckIcon from "./assets/icon-check.svg";
 import "rc-slider/assets/index.css";
 import RightArrow from "./components/icons/RightArrow";
 import PasswordDisplay from "./components/PasswordDisplay";
+import Checkbox from "./components/Checkbox";
 
 type CharOptions = {
   upper?: boolean;
@@ -161,94 +162,26 @@ function App() {
               />
             </div>
             <div className="text-white text-lg">
-              <div className="mb-5">
-                <label className="flex gap-4 items-center relative">
-                  <input
-                    type="checkbox"
-                    checked={checked.upper}
-                    onChange={() => toggleCheckbox("upper")}
-                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
-                      checked.upper
-                        ? "bg-neonGreen border-transparent"
-                        : "border-white bg-darkGrey"
-                    }   transition-all duration-200`}
-                  />
-                  <span
-                    className={`w-5 h-5 flex items-center justify-center absolute ${
-                      checked.upper ? "inline" : "hidden"
-                    }`}
-                  >
-                    <img src={CheckIcon} alt="Check Icon" />
-                  </span>
-                  Include Uppercase Letters
-                </label>
-              </div>
-              <div className="mb-5">
-                <label className="flex gap-4 items-center relative">
-                  <input
-                    type="checkbox"
-                    checked={checked.lower}
-                    onChange={() => toggleCheckbox("lower")}
-                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
-                      checked.lower
-                        ? "bg-neonGreen border-transparent"
-                        : "border-white bg-darkGrey"
-                    }   transition-all duration-200`}
-                  />
-                  <span
-                    className={`w-5 h-5 flex items-center justify-center absolute ${
-                      checked.lower ? "inline" : "hidden"
-                    }`}
-                  >
-                    <img src={CheckIcon} alt="Check Icon" />
-                  </span>
-                  Include Lowercase Letters
-                </label>
-              </div>
-              <div className="mb-5">
-                <label className="flex gap-4 items-center relative">
-                  <input
-                    type="checkbox"
-                    checked={checked.number}
-                    onChange={() => toggleCheckbox("number")}
-                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
-                      checked.number
-                        ? "bg-neonGreen border-transparent"
-                        : "border-white bg-darkGrey"
-                    }   transition-all duration-200`}
-                  />
-                  <span
-                    className={`w-5 h-5 flex items-center justify-center absolute ${
-                      checked.number ? "inline" : "hidden"
-                    }`}
-                  >
-                    <img src={CheckIcon} alt="Check Icon" />
-                  </span>
-                  Include Number
-                </label>
-              </div>
-              <div>
-                <label className="flex gap-4 items-center relative">
-                  <input
-                    type="checkbox"
-                    checked={checked.symbol}
-                    onChange={() => toggleCheckbox("symbol")}
-                    className={`peer appearance-none w-5 h-5 rounded-none border-2 ${
-                      checked.symbol
-                        ? "bg-neonGreen border-transparent"
-                        : "border-white bg-darkGrey"
-                    }   transition-all duration-200`}
-                  />
-                  <span
-                    className={`w-5 h-5 flex items-center justify-center absolute ${
-                      checked.symbol ? "inline" : "hidden"
-                    }`}
-                  >
-                    <img src={CheckIcon} alt="Check Icon" />
-                  </span>
-                  Include Symbols
-                </label>
-              </div>
+              <Checkbox
+                label="Include Uppercase Letters"
+                checked={checked.upper}
+                onChange={() => toggleCheckbox("upper")}
+              />
+              <Checkbox
+                label="Include Lowercase Letters"
+                checked={checked.lower}
+                onChange={() => toggleCheckbox("lower")}
+              />
+              <Checkbox
+                label="Include Numbers"
+                checked={checked.number}
+                onChange={() => toggleCheckbox("number")}
+              />
+              <Checkbox
+                label="Include Symbols"
+                checked={checked.symbol}
+                onChange={() => toggleCheckbox("symbol")}
+              />
             </div>
             <div className="bg-veryDarkGrey py-6 px-8 flex justify-between items-center">
               <span className="text-grey text-xl">STRENGTH</span>

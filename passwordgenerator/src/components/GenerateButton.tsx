@@ -7,7 +7,7 @@ interface GenerateButtonProps {
 export default function GenerateButton({ onClick }: GenerateButtonProps) {
   return (
     <div
-      className="group bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300 px-[177px] py-5 flex items-center cursor-pointer"
+      className="group justify-center bg-neonGreen border border-transparent hover:bg-veryDarkGrey hover:text-neonGreen hover:border-neonGreen transition duration-300  py-5 flex items-center cursor-pointer"
       onClick={onClick}
     >
       <span className="text-lg mr-6">GENERATE</span>

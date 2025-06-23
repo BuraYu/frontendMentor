@@ -102,7 +102,7 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center flex-col bg-veryDarkGrey relative">
+    <div className="h-screen flex justify-center items-center flex-col bg-veryDarkGrey relative p-3">
       <h1 className="font-jetbrains text-2xl text-grey mb-8">
         Password Generator
       </h1>

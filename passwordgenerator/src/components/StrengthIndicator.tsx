@@ -14,7 +14,7 @@ export default function StrengthIndicator({
       <span className="text-grey text-xl">STRENGTH</span>
       <div className="flex gap-2 items-center">
         <span className="text-white text-2xl mr-2 font-bold">
-          {label ? label.toUpperCase() : "\u00A0"}
+          {label ? label.toUpperCase() : "Password".toUpperCase()}
         </span>
         {Array.from({ length: 4 }).map((_, i) => (
           <div

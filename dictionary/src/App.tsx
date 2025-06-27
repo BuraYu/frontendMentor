@@ -1,7 +1,6 @@
-// App.tsx
 import { useState, useMemo } from "react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import theme from "./theme/theme"; // Import your theme function here
+import { ThemeProvider, CssBaseline, Container } from "@mui/material";
+import theme from "./theme/theme";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 
@@ -17,15 +16,17 @@ export default function App() {
   );
 
   return (
-    <ThemeProvider theme={muiTheme}>
-      <CssBaseline />
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        fontChoice={fontChoice}
-        setFontChoice={setFontChoice}
-      />
-      <Hero />
-    </ThemeProvider>
+    <Container maxWidth="lg">
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
+        <Navbar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          fontChoice={fontChoice}
+          setFontChoice={setFontChoice}
+        />
+        <Hero />
+      </ThemeProvider>
+    </Container>
   );
 }

@@ -44,10 +44,10 @@ const theme = (darkMode: boolean, fontChoice: "sans" | "serif" | "mono") =>
     palette: {
       mode: darkMode ? "dark" : "light",
       background: {
-        default: darkMode ? "#050505" : "#FFFFFF",
+        default: darkMode ? "#000000" : "#FFFFFF",
       },
       text: {
-        primary: darkMode ? "#FFFFFF" : "#050505",
+        primary: darkMode ? "#FFFFFF" : "#000000",
       },
     },
     typography: {

@@ -49,6 +49,9 @@ const theme = (darkMode: boolean, fontChoice: "sans" | "serif" | "mono") =>
       text: {
         primary: darkMode ? "#FFFFFF" : "#000000",
       },
+      action: {
+        active: darkMode ? "#A445ED" : "#757575",
+      },
     },
     typography: {
       fontFamily:

@@ -1,6 +1,7 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import BedtimeIcon from "@mui/icons-material/Bedtime";
 import {
   Switch,
   useTheme,
@@ -95,10 +96,26 @@ export default function Navbar({
               borderWidth: "0,5px",
               borderColor: "gray",
               marginTop: "6px",
-              marginX: "5px"
+              marginX: "5px",
             }}
           />
-          <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+          <Switch
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)}
+            sx={{
+              "& .MuiSwitch-switchBase + .MuiSwitch-track": {
+                backgroundColor: darkMode ? "#A445ED" : "#757575",
+                opacity: 1,
+              },
+              "& .MuiSwitch-thumb": {
+                boxShadow: "1px",
+                color: "#fff",
+                border: "0.1px solid black",
+              },
+            }}
+          />
+
+          <BedtimeIcon sx={{ color: theme.palette.action.active }} />
         </Box>
       </AppBar>
     </Box>
